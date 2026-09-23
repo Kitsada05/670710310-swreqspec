@@ -1,4 +1,13 @@
 ---
+## 2026-09-16 11:05 คำสั่ง: /plan specs/001-booking/spec.md
+
+- เครื่องมือ: GitHub Copilot (Codespaces)
+- ไฟล์: specs/001-booking/plan.md (สร้าง)
+
+### ผลลัพธ์
+- สร้างไฟล์ `specs/001-booking/plan.md` ซึ่งประกอบด้วย: สรุปแนวทาง, ตารางเทคโนโลยี, โมเดลข้อมูล, API/หน้าจอ, ตารางตรวจ Constraints, แผนทดสอบจาก AC, ลำดับงาน และ Open Questions (Q1..Q6)
+
+---
 ## 2026-09-16 10:00 คำสั่ง: /clarify specs/001-booking/spec.md
 
 - เครื่องมือ: GitHub Copilot (Codespaces)
