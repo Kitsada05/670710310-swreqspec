@@ -1,4 +1,12 @@
 ---
+## 2026-09-23 คำสั่ง: /implement T-09 specs/001-booking/tasks.md
+
+- เครื่องมือ: GitHub Copilot (Codespaces)
+- ไฟล์: frontend/src/pages/SlotPicker.jsx, frontend/src/__tests__/SlotPicker.test.jsx (สร้าง)
+- ผลการรัน: Vitest ทั้งหมดผ่าน (2 tests, 2 passed)
+- สิ่งที่ต้องถาม (เกือบต้องเดา): ไม่มี — ใช้ API จำลองตาม plan
+
+---
 ## 2026-09-16 11:05 คำสั่ง: /plan specs/001-booking/spec.md
 
 - เครื่องมือ: GitHub Copilot (Codespaces)
