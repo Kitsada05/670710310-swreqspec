@@ -54,3 +54,15 @@
 - TC ID ที่เสนอ: TC-BKG-01-1, TC-BKG-01-2, TC-BKG-01-3
 - สรุป: AC-BKG-01 มีประเด็น Open Question ที่ต้องตรวจอีกครั้งเรื่องรูปแบบหมายเลขคิว (Q-02) ทำให้ส่วน "แสดงหมายเลขคิว" ใน Then ต้องเขียนเป็น "(รอ Q-02)" แทนการ assert รูปแบบจริง
 - ผล: ยังไม่รัน pytest หรือ vitest เนื่องจากโหมดร่างตามคำสั่ง
+
+---
+
+## 2569-10-07 08.30 คำสั่ง: /testcases AC-BKG-01 specs/001-booking/
+
+- โหมด: เขียน test จากแถวสถานะ "ใช้ได้"
+- ฟิวส์ที่ใช้: [specs/001-booking/test-cases.md](specs/001-booking/test-cases.md), [specs/001-booking/spec.md](specs/001-booking/spec.md), [specs/001-booking/tasks.md](specs/001-booking/tasks.md)
+- TC ID ที่เขียน test: TC-BKG-01-1, TC-BKG-01-2
+- TC ID ที่ค้างเพราะ spec ยังไม่ชัด: TC-BKG-01-3
+- ไฟล์ที่แก้: [backend/tests/test_AC_BKG_01.py](backend/tests/test_AC_BKG_01.py), [frontend/src/__tests__/AC-BKG-01.test.jsx](frontend/src/__tests__/AC-BKG-01.test.jsx)
+- ผลการทดสอบ: backend 2 passed, 1 skipped; frontend 1 passed
+- หมายเหตุ: TC-BKG-01-3 ถูกใส่เป็น skipped เพราะ Then ของแถวมีคำว่า "spec ไม่ได้บอก" และไม่ได้ระบุผลลัพธ์ที่ชัดเจนใน spec จึงไม่ assert ใด ๆ
