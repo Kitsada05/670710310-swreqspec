@@ -77,3 +77,15 @@
 - สรุปตามรอยไปข้างหน้า: ครบ 2 ข้อ (NFR-PERF-01, IF-IDP-01), ยังไม่ถึง 9 ข้อ, ช่องโหว่ 4 ข้อ
 - ข้อค้นพบใหม่: F-001, F-002, F-003, F-004
 - ไฟล์ที่สร้าง: [specs/001-booking/rtm.md](specs/001-booking/rtm.md)
+
+---
+
+## 2569-10-07 09:15 คำสั่ง: /verify specs/001-booking/
+
+- โหมด: ตรวจ requirement (ไม่แก้โค้ด)
+- อ่านไฟล์: [specs/001-booking/spec.md](specs/001-booking/spec.md), [specs/001-booking/plan.md](specs/001-booking/plan.md), [specs/001-booking/tasks.md](specs/001-booking/tasks.md), [specs/001-booking/test-cases.md](specs/001-booking/test-cases.md), [specs/001-booking/rtm.md](specs/001-booking/rtm.md), [AGENTS.md](AGENTS.md)
+- รัน test: `cd backend && pytest -v` -> 5 passed, 1 skipped; `cd frontend && npm test` -> 2 passed
+- ข้อค้นพบที่แก้แล้ว: F-005 (ลบ endpoint ยกเลิกการจองออกจาก Out of scope), F-006 (ปรับข้อความและจำนวนตัวเลือกในหน้าจอยืนยันตรง AC-BKG-03)
+- สรุปตามรอยไปข้างหน้า: ครบ 2 ข้อ, ช่องโหว่ 6 ข้อ, ยังไม่ถึง 7 ข้อ
+- ข้อค้นพบยังคงเปิด: F-001, F-002, F-003, F-004
+- ไฟล์ที่อัปเดต: [specs/001-booking/rtm.md](specs/001-booking/rtm.md)
