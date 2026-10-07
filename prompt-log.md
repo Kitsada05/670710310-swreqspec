@@ -66,3 +66,14 @@
 - ไฟล์ที่แก้: [backend/tests/test_AC_BKG_01.py](backend/tests/test_AC_BKG_01.py), [frontend/src/__tests__/AC-BKG-01.test.jsx](frontend/src/__tests__/AC-BKG-01.test.jsx)
 - ผลการทดสอบ: backend 2 passed, 1 skipped; frontend 1 passed
 - หมายเหตุ: TC-BKG-01-3 ถูกใส่เป็น skipped เพราะ Then ของแถวมีคำว่า "spec ไม่ได้บอก" และไม่ได้ระบุผลลัพธ์ที่ชัดเจนใน spec จึงไม่ assert ใด ๆ
+
+---
+
+## 2569-10-07 08:40 คำสั่ง: /verify specs/001-booking/
+
+- โหมด: ตรวจ requirement (ไม่แก้โค้ด)
+- อ่านไฟล์: [specs/001-booking/spec.md](specs/001-booking/spec.md), [specs/001-booking/plan.md](specs/001-booking/plan.md), [specs/001-booking/tasks.md](specs/001-booking/tasks.md), [specs/001-booking/test-cases.md](specs/001-booking/test-cases.md), [AGENTS.md](AGENTS.md)
+- รัน test: `cd backend && pytest -v` -> 5 passed, 1 skipped; `cd frontend && npm test` -> 2 passed
+- สรุปตามรอยไปข้างหน้า: ครบ 2 ข้อ (NFR-PERF-01, IF-IDP-01), ยังไม่ถึง 9 ข้อ, ช่องโหว่ 4 ข้อ
+- ข้อค้นพบใหม่: F-001, F-002, F-003, F-004
+- ไฟล์ที่สร้าง: [specs/001-booking/rtm.md](specs/001-booking/rtm.md)
