@@ -1,39 +1,46 @@
-from sqlalchemy import Table, Column, Integer, String, Date, Time, DateTime, MetaData
+# ตารางของฟีเจอร์จองคิวตรวจสุขภาพ (T-01)
+# รองรับ CON-TECH-01, DOM-PDPA-01, IF-HIS-01
+from datetime import date, datetime, time, timezone
 
-# รองรับ: CON-TECH-01, DOM-PDPA-01, IF-HIS-01
-# ประกาศสคีม่า SQLAlchemy แบบ declarative-less เพื่อใช้งานกับ migration function
-metadata = MetaData()
+from sqlalchemy import Date, DateTime, ForeignKey, Integer, String, Time
+from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column
 
-slots = Table(
-    "slots",
-    metadata,
-    Column("id", Integer, primary_key=True),
-    Column("slot_date", Date, nullable=False),
-    Column("start_time", Time, nullable=False),
-    Column("package_code", String(50), nullable=False),
-    Column("capacity", Integer, nullable=False, default=0),
-    Column("remaining", Integer, nullable=False, default=0),
-)
 
-bookings = Table(
-    "bookings",
-    metadata,
-    Column("id", Integer, primary_key=True),
-    Column("hn", String(64), nullable=False),
-    Column("slot_id", Integer, nullable=False),
-    Column("booking_date", DateTime, nullable=False),
-    Column("queue_no", String(32), nullable=True),
-    Column("status", String(20), nullable=False, default="confirmed"),
-    Column("created_at", DateTime, nullable=False),
-)
+class Base(DeclarativeBase):
+    pass
 
-# audit_logs เก็บ actor_id, action, hn, accessed_at
-audit_logs = Table(
-    "audit_logs",
-    metadata,
-    Column("id", Integer, primary_key=True),
-    Column("actor_id", String(64), nullable=False),
-    Column("action", String(128), nullable=False),
-    Column("hn", String(64), nullable=True),
-    Column("accessed_at", DateTime, nullable=False),
-)
+
+class Slot(Base):
+    """ช่วงเวลาตรวจ และที่นั่งคงเหลือ (FR-BKG-01, FR-BKG-06, ASM-01)"""
+    __tablename__ = "slots"
+
+    id: Mapped[int] = mapped_column(Integer, primary_key=True)
+    slot_date: Mapped[date] = mapped_column(Date, index=True)
+    start_time: Mapped[time] = mapped_column(Time)
+    package_code: Mapped[str] = mapped_column(String(20), index=True)
+    capacity: Mapped[int] = mapped_column(Integer)
+    remaining: Mapped[int] = mapped_column(Integer)
+
+
+class Booking(Base):
+    """การจอง 1 รายการ เก็บเฉพาะ HN ไม่เก็บเลขบัตรประชาชน (FR-BKG-04, IF-HIS-01)"""
+    __tablename__ = "bookings"
+
+    id: Mapped[int] = mapped_column(Integer, primary_key=True)
+    hn: Mapped[str] = mapped_column(String(20), index=True)
+    slot_id: Mapped[int] = mapped_column(ForeignKey("slots.id"))
+    booking_date: Mapped[date] = mapped_column(Date, index=True)
+    queue_no: Mapped[str | None] = mapped_column(String(20), nullable=True)  # รอ Q-02
+    status: Mapped[str] = mapped_column(String(20), default="BOOKED")
+    created_at: Mapped[datetime] = mapped_column(DateTime, default=lambda: datetime.now(timezone.utc))
+
+
+class AuditLog(Base):
+    """บันทึกการเข้าถึงข้อมูลสุขภาพ (DOM-PDPA-01)"""
+    __tablename__ = "audit_logs"
+
+    id: Mapped[int] = mapped_column(Integer, primary_key=True)
+    actor_id: Mapped[str] = mapped_column(String(50))
+    action: Mapped[str] = mapped_column(String(50))
+    hn: Mapped[str] = mapped_column(String(20))
+    accessed_at: Mapped[datetime] = mapped_column(DateTime, default=lambda: datetime.now(timezone.utc))
